@@ -127,7 +127,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = "SELECT * FROM AFFEVENT_REGISTRATION WHERE EMAIL = @email";
+                    string sql = "SELECT * FROM EVENT_REGISTRATION WHERE EMAIL = @email";
                     SqlCommand command = new SqlCommand(sql, conn);
                     command.Parameters.AddWithValue("@email", email);
 
@@ -172,7 +172,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = $"SELECT * FROM AFFEVENT_REGISTRATION where EMAIL = '{Email}'";
+                    string sql = $"SELECT * FROM EVENT_REGISTRATION where EMAIL = '{Email}'";
                     SqlCommand command = new SqlCommand(sql, conn);
 
                     SqlDataReader reader = command.ExecuteReader();
