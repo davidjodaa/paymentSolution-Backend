@@ -32,7 +32,7 @@ namespace paymentSolution.Implementation
             {
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    string sql = "SELECT * FROM AFFEvents.dbo.AFFEVENT_REGISTRATION";
+                    string sql = "";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -79,7 +79,7 @@ namespace paymentSolution.Implementation
             {
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    string sql = $"SELECT * FROM AFFEvents.dbo.AFFEVENT_REGISTRATION where GENDER = 'FEMALE'";
+                    string sql = $"SELECT * FROM EVENT_REGISTRATION where GENDER = 'FEMALE'";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -127,7 +127,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = "SELECT * FROM AFFEvents.dbo.AFFEVENT_REGISTRATION WHERE EMAIL = @email";
+                    string sql = "SELECT * FROM AFFEVENT_REGISTRATION WHERE EMAIL = @email";
                     SqlCommand command = new SqlCommand(sql, conn);
                     command.Parameters.AddWithValue("@email", email);
 
@@ -172,7 +172,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = $"SELECT * FROM AFFEvents.dbo.AFFEVENT_REGISTRATION where EMAIL = '{Email}'";
+                    string sql = $"SELECT * FROM AFFEVENT_REGISTRATION where EMAIL = '{Email}'";
                     SqlCommand command = new SqlCommand(sql, conn);
 
                     SqlDataReader reader = command.ExecuteReader();
@@ -216,7 +216,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = $"SELECT * FROM AFFEvents.dbo.AFFEVENT_REGISTRATION where TRANSACTION_REFERENCE = '{transRef}'";
+                    string sql = $"SELECT * FROM EVENT_REGISTRATION where TRANSACTION_REFERENCE = '{transRef}'";
                     SqlCommand command = new SqlCommand(sql, conn);
 
                     SqlDataReader reader = command.ExecuteReader();
@@ -260,7 +260,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = $"SELECT * FROM AFFEvents.dbo.AFFEVENT_REGISTRATION where REQUEST_ID = '{transRef}'";
+                    string sql = $"SELECT * FROM EVENT_REGISTRATION where REQUEST_ID = '{transRef}'";
                     SqlCommand command = new SqlCommand(sql, conn);
 
                     SqlDataReader reader = command.ExecuteReader();
@@ -303,7 +303,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    SqlCommand command = new SqlCommand("AFFEvents.dbo.SP_INSERT_REGISTRANT", conn);
+                    SqlCommand command = new SqlCommand("SP_INSERT_REGISTRANT", conn);
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.AddWithValue("@FULLNAME", req.FULLNAME);
@@ -334,7 +334,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = "UPDATE AFFEvents.dbo.AFFEVENT_REGISTRATION SET VIRTUAL_ACC_NUMBER = @accountNo, REQUEST_ID = @requestId WHERE EMAIL = @email";
+                    string sql = "UPDATE EVENT_REGISTRATION SET VIRTUAL_ACC_NUMBER = @accountNo, REQUEST_ID = @requestId WHERE EMAIL = @email";
                     SqlCommand command = new SqlCommand(sql, conn);
                     command.Parameters.AddWithValue("@accountNo", accountNo);
                     command.Parameters.AddWithValue("@requestId", requestId);
@@ -360,7 +360,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = "UPDATE AFFEvents.dbo.AFFEVENT_REGISTRATION SET TRANSACTION_REFERENCE = @transRef, SESSION_ID = @sessionId, PAID = 'Y' WHERE REQUEST_ID = @transRef";
+                    string sql = "UPDATE EVENT_REGISTRATION SET TRANSACTION_REFERENCE = @transRef, SESSION_ID = @sessionId, PAID = 'Y' WHERE REQUEST_ID = @transRef";
                     SqlCommand command = new SqlCommand(sql, conn);
 
                     command.Parameters.AddWithValue("@transRef", transRef);
@@ -386,7 +386,7 @@ namespace paymentSolution.Implementation
                 {
                     conn.Open();
 
-                    string sql = "SELECT * FROM AFFEvents.dbo.AFFEVENT_ChannelsAllowed WHERE channel_code = @channelCode AND auth_key = @authorization AND method_reqd = @operationName AND channel_allowed = 'Y'";
+                    string sql = "SELECT * FROM EVENT_ChannelsAllowed WHERE channel_code = @channelCode AND auth_key = @authorization AND method_reqd = @operationName AND channel_allowed = 'Y'";
                     SqlCommand command = new SqlCommand(sql, conn);
                     command.Parameters.AddWithValue("@channelCode", channelCode);
                     command.Parameters.AddWithValue("@authorization", authorization);
