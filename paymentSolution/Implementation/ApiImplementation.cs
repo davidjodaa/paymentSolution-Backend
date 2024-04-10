@@ -65,7 +65,7 @@ namespace paymentSolution.Implementation
         {
             try
             {
-                string fullUrl = "http://accessmore-xtrawin.dev.accessbankplc.com/Cluster/CreateCluster";
+                string fullUrl = "";
                 string reqbody = JsonConvert.SerializeObject(req);
                 var client = new RestClient(fullUrl);
 
@@ -73,7 +73,7 @@ namespace paymentSolution.Implementation
 
                 request.AddHeader("Accept", "application/json");
                 request.AddHeader("Content-Type", "application/json");
-                request.AddHeader("X-API-Key", "B62F780121D2494190F44631BD469E96");
+                request.AddHeader("X-API-Key", "");
                 request.AddParameter("reqbody", reqbody, ParameterType.RequestBody);
                 IRestResponse<ClusterdrawResp> response = client.Execute<ClusterdrawResp>(request);
                 ClusterdrawResp resp = JsonConvert.DeserializeObject<ClusterdrawResp>(response.Content);
